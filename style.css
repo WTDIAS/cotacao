@@ -1,4 +1,5 @@
 html, body {
+   overflow-y: auto;
    overscroll-behavior: smooth;
    touch-action: none;         
    background-color: #46BE86;
@@ -6,9 +7,6 @@ html, body {
    padding: 5px;
 }
 
-html {
-   scroll-behavior: smooth;
- }
 
 
 .custom-card {
