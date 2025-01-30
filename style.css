@@ -1,13 +1,13 @@
 body {    
-   overflow-y: auto;
+   overscroll-behavior: none;
+   touch-action: none;    
    background-color: #46BE86;
    font-family: Arial, sans-serif;
    padding: 5px;
 }
 
 html {
-   overscroll-behavior: none;
-   touch-action: none; 
+   overflow-y: auto;
 }
 
 
