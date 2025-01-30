@@ -1,16 +1,17 @@
 html, body {
-   overscroll-behavior: none;
+   overscroll-behavior: smooth;
    touch-action: none;         
    background-color: #46BE86;
    font-family: Arial, sans-serif;
    padding: 5px;
 }
 
-.font-weight-bold {
-   font-weight: bold;
-}
+html {
+   scroll-behavior: smooth;
+ }
 
-.custom-card:hover {
+
+.custom-card {
    background-color: #007C30;
    color: white;
    border-radius: 10px;
