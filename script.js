@@ -218,21 +218,31 @@ function compartilharTabela() {
 
 
 
-// Função para exibir o modal de confirmação
+// Exibir Modal antes de atualizar a página
+window.addEventListener('beforeunload', async function (event) {
+   event.preventDefault(); // Impede a atualização automática
+   event.returnValue = ''; // Necessário para alguns navegadores
+
+   const userConfirmed = await showConfirmationModal();
+   if (userConfirmed) {
+      window.location.reload(); // Atualiza a página se o usuário confirmar
+   }
+});
+
+// Função para exibir modal de confirmação
 function showConfirmationModal() {
    const modal = document.getElementById('confirmationModal');
-   modal.style.display = 'block';
+   modal.style.display = 'flex';
 
-   // Retorna uma promessa que resolve se o usuário confirmar ou rejeita se cancelar
    return new Promise((resolve) => {
       document.getElementById('confirmLeave').addEventListener('click', () => {
          modal.style.display = 'none';
-         resolve(true); // Usuário confirmou
+         resolve(true);
       });
 
       document.getElementById('cancelLeave').addEventListener('click', () => {
          modal.style.display = 'none';
-         resolve(false); // Usuário cancelou
+         resolve(false);
       });
    });
 }
@@ -241,58 +251,7 @@ function showConfirmationModal() {
 
 
 
-// Variável para controlar se o modal está aberto
-let isModalOpen = false;
 
-// Função para exibir o modal de confirmação
-function showConfirmationModal() {
-   const modal = document.getElementById('confirmationModal');
-   modal.style.display = 'block';
-   isModalOpen = true;
-
-   // Retorna uma promessa que resolve se o usuário confirmar ou rejeita se cancelar
-   return new Promise((resolve) => {
-      document.getElementById('confirmLeave').addEventListener('click', () => {
-         modal.style.display = 'none';
-         isModalOpen = false;
-         resolve(true); // Usuário confirmou
-      }, { once: true }); // Garante que o evento seja removido após ser executado
-
-      document.getElementById('cancelLeave').addEventListener('click', () => {
-         modal.style.display = 'none';
-         isModalOpen = false;
-         resolve(false); // Usuário cancelou
-      }, { once: true }); // Garante que o evento seja removido após ser executado
-   });
-}
-
-// Intercepta tentativas de recarregar ou fechar a página
-window.addEventListener('beforeunload', function (e) {
-   if (isModalOpen) {
-      // Se o modal estiver aberto, impede o descarregamento da página
-      e.preventDefault();
-      // Navegadores modernos exigem que o returnValue seja definido
-      e.returnValue = '';
-   }
-});
-
-// Intercepta cliques em links ou ações que podem levar a uma nova página
-document.addEventListener('click', function (e) {
-   const target = e.target;
-   if (target.tagName === 'A' || target.tagName === 'BUTTON') {
-      e.preventDefault(); // Impede a ação padrão
-      showConfirmationModal().then((confirmed) => {
-         if (confirmed) {
-            // Se o usuário confirmar, redireciona ou executa a ação
-            if (target.tagName === 'A') {
-               window.location.href = target.href;
-            } else if (target.tagName === 'BUTTON') {
-               target.click(); // Executa a ação do botão
-            }
-         }
-      });
-   }
-});
 
 
 
