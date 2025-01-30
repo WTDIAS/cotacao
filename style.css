@@ -1,7 +1,5 @@
-html, body {
-   overflow-x: auto;
-   overscroll-behavior: none;
-   touch-action: none;         
+html, body {    
+   overflow-y: scroll;   
    background-color: #46BE86;
    font-family: Arial, sans-serif;
    padding: 5px;
