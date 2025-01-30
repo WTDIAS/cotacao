@@ -201,7 +201,7 @@ function compartilharTabela() {
       // Verifica se a linha não é a linha de totais
       if (linha.id !== "footTotais") {
          const colunas = linha.querySelectorAll("td");
-         textoCompartilhamento += `${colunas[0].textContent}...........${colunas[1].textContent}.....${colunas[2].textContent}\t${colunas[3].textContent}\n`;
+         textoCompartilhamento += `${colunas[0].textContent}...........${colunas[1].textContent}.......${colunas[2].textContent}.....${colunas[3].textContent}\n`;
       }
    });
 
