@@ -1,6 +1,6 @@
 html, body {
    overflow-y: auto;
-   overscroll-behavior: smooth;
+   overscroll-behavior: none;
    touch-action: none;         
    background-color: #46BE86;
    font-family: Arial, sans-serif;
