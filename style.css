@@ -1,4 +1,4 @@
-html, body:hover {
+html, body {
    overscroll-behavior: none;
    touch-action: none;         
    background-color: #46BE86;
@@ -10,7 +10,7 @@ html, body:hover {
    font-weight: bold;
 }
 
-.custom-card {
+.custom-card:hover {
    background-color: #007C30;
    color: white;
    border-radius: 10px;
