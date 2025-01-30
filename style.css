@@ -1,5 +1,5 @@
 html, body {
-   overflow-y: auto;
+   overflow-x: auto;
    overscroll-behavior: none;
    touch-action: none;         
    background-color: #46BE86;
