@@ -256,13 +256,13 @@ function showConfirmationModal() {
          modal.style.display = 'none';
          isModalOpen = false;
          resolve(true); // Usuário confirmou
-      });
+      }, { once: true }); // Garante que o evento seja removido após ser executado
 
       document.getElementById('cancelLeave').addEventListener('click', () => {
          modal.style.display = 'none';
          isModalOpen = false;
          resolve(false); // Usuário cancelou
-      });
+      }, { once: true }); // Garante que o evento seja removido após ser executado
    });
 }
 
