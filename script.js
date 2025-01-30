@@ -191,7 +191,7 @@ function compartilharTabela() {
 
    const nomeData = document.getElementById('appNameData');
    const dataFormatada = nomeData.textContent
-   const alinhamento = "...................."
+   const alinhamento = ".........."
 
    let textoCompartilhamento = `${dataFormatada}\n\n`;
    textoCompartilhamento += "Descrição\tQtd\tPreço\tTotal\n";
