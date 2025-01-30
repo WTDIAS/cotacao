@@ -216,4 +216,17 @@ function compartilharTabela() {
    });
 }
 
+// Função para solicitar confirmação antes de atualizar a página
+window.addEventListener('beforeunload', function (e) {
+   // Mensagem de confirmação (não será exibida em navegadores modernos, mas é necessária para o evento funcionar)
+   const confirmationMessage = 'Tem certeza que deseja atualizar a página? Todas as alterações não salvas serão perdidas.';
+
+   // Para navegadores modernos, basta chamar preventDefault() e retornar a mensagem
+   e.preventDefault();
+   return confirmationMessage; // A mensagem não será exibida, mas o navegador mostrará uma confirmação genérica
+});
+
+
+
+
 insereNomeData();
