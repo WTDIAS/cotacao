@@ -218,32 +218,41 @@ function compartilharTabela() {
 
 
 
-// Exibir Modal antes de atualizar a página
-window.addEventListener('beforeunload', async function (event) {
-   event.preventDefault(); // Impede a atualização automática
-   event.returnValue = ''; // Necessário para alguns navegadores
 
-   const userConfirmed = await showConfirmationModal();
-   if (userConfirmed) {
-      window.location.reload(); // Atualiza a página se o usuário confirmar
-   }
+
+window.addEventListener('beforeunload', function (event) {
+   event.preventDefault(); 
+   event.returnValue = ''; 
+
+   // Exibe a modal e bloqueia a atualização da página
+   showConfirmationModal().then((userConfirmed) => {
+      if (userConfirmed) {
+         window.removeEventListener('beforeunload', arguments.callee); // Remove o evento para evitar loop
+         window.location.reload(); // Atualiza a página
+      }
+   });
+
+   return ''; // Necessário para exibir o aviso padrão do navegador em alguns casos
 });
 
-// Função para exibir modal de confirmação
+// Função para exibir a modal de confirmação
 function showConfirmationModal() {
    const modal = document.getElementById('confirmationModal');
    modal.style.display = 'flex';
 
    return new Promise((resolve) => {
-      document.getElementById('confirmLeave').addEventListener('click', () => {
+      const confirmBtn = document.getElementById('confirmLeave');
+      const cancelBtn = document.getElementById('cancelLeave');
+
+      confirmBtn.onclick = () => {
          modal.style.display = 'none';
          resolve(true);
-      });
+      };
 
-      document.getElementById('cancelLeave').addEventListener('click', () => {
+      cancelBtn.onclick = () => {
          modal.style.display = 'none';
          resolve(false);
-      });
+      };
    });
 }
 
