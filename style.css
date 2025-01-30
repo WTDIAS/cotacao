@@ -1,5 +1,5 @@
 html, body {    
-   overflow-y: scroll;   
+   overflow-y: auto;
    background-color: #46BE86;
    font-family: Arial, sans-serif;
    padding: 5px;
