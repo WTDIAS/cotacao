@@ -107,3 +107,28 @@ footer {
    font-size: 14px;
    color: #333;
 }
+
+#confirmationModal {
+   background-color: white;
+   padding: 20px;
+   border-radius: 5px;
+   text-align: center;
+}
+
+#confirmationModal button {
+   margin: 10px;
+   padding: 10px 20px;
+   cursor: pointer;
+}
+
+#confirmLeave {
+   background-color: #ff4d4d;
+   color: white;
+   border: none;
+}
+
+#cancelLeave {
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+}

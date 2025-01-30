@@ -216,14 +216,37 @@ function compartilharTabela() {
    });
 }
 
-// Função para solicitar confirmação antes de atualizar a página
-window.addEventListener('beforeunload', function (e) {
-   // Mensagem de confirmação (não será exibida em navegadores modernos, mas é necessária para o evento funcionar)
-   const confirmationMessage = 'Tem certeza que deseja atualizar a página? Todas as alterações não salvas serão perdidas.';
 
-   // Para navegadores modernos, basta chamar preventDefault() e retornar a mensagem
-   e.preventDefault();
-   return confirmationMessage; // A mensagem não será exibida, mas o navegador mostrará uma confirmação genérica
+
+// Função para exibir o modal de confirmação
+function showConfirmationModal() {
+   const modal = document.getElementById('confirmationModal');
+   modal.style.display = 'block';
+
+   // Retorna uma promessa que resolve se o usuário confirmar ou rejeita se cancelar
+   return new Promise((resolve) => {
+      document.getElementById('confirmLeave').addEventListener('click', () => {
+         modal.style.display = 'none';
+         resolve(true); // Usuário confirmou
+      });
+
+      document.getElementById('cancelLeave').addEventListener('click', () => {
+         modal.style.display = 'none';
+         resolve(false); // Usuário cancelou
+      });
+   });
+}
+
+
+// Evento beforeunload personalizado
+window.addEventListener('beforeunload', async function (e) {
+   // Exibe o modal e espera a resposta do usuário
+   const userConfirmed = await showConfirmationModal();
+
+   // Se o usuário cancelar, impede a recarga da página
+   if (!userConfirmed) {
+      e.preventDefault();
+   }
 });
 
 
