@@ -57,8 +57,6 @@ html, body {
 }
 
 .tabela-container {
-   max-height: 300px;
-   overflow-y: auto;
    margin: 20px 0;
 }
 
