@@ -40,6 +40,8 @@ function insereNomeData(){
    document.getElementById('appNameData').innerText = "APP Cotação - " + dataFormatada;
 }
 
+
+
 function valida() {
    let mensagemAlerta = "";
 
@@ -61,6 +63,8 @@ function valida() {
    divAlerta.textContent = mensagemAlerta;
 }
 
+
+
 function limpaCampos() {
    descricaoItem.value = "";
    quantidadeItem.value = 1;
@@ -79,6 +83,8 @@ function somaPreco() {
 
    precoTotal.textContent = "R$ " + total.toFixed(2);
 }
+
+
 
 function inserirFootTotais() {
    document.getElementById("footTotais").remove();
@@ -140,9 +146,13 @@ function inserirLinha() {
    tabelaTbody.appendChild(linha);
 }
 
+
+
 botaoExcluir.addEventListener('click', function () {
    removeLinha();
 });
+
+
 
 function removeLinha() {
    const checkboxes = document.querySelectorAll("input[type=checkbox]:checked");
@@ -151,6 +161,8 @@ function removeLinha() {
    });
    somaPreco();
 }
+
+
 
 function VerificaPermissaoCopiar(){
    if (navigator.permissions) {
@@ -167,6 +179,8 @@ function VerificaPermissaoCopiar(){
    }
 }
 
+
+
 // Função para compartilhar a tabela
 function compartilharTabela() {         
    const fornecedor = inputFornecedor.value.trim();
@@ -177,6 +191,7 @@ function compartilharTabela() {
 
    const nomeData = document.getElementById('appNameData');
    const dataFormatada = nomeData.textContent
+   const espacos = "                    "
 
    let textoCompartilhamento = `${dataFormatada}\n\n`;
    textoCompartilhamento += "Descrição\tQtd\tPreço\tTotal\n";
@@ -186,7 +201,7 @@ function compartilharTabela() {
       // Verifica se a linha não é a linha de totais
       if (linha.id !== "footTotais") {
          const colunas = linha.querySelectorAll("td");
-         textoCompartilhamento += `${colunas[0].textContent}\t\t${colunas[1].textContent}\t${colunas[2].textContent}\t${colunas[3].textContent}\n`;
+         textoCompartilhamento += `${colunas[0].textContent}${espacos}${colunas[1].textContent}\t${colunas[2].textContent}\t${colunas[3].textContent}\n`;
       }
    });
 
